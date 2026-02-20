@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: social-login
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: 935469342605-s1uerjuk1mjaupsm22cl6f2788mk3qgt.apps.googleusercontent.com
+            client-secret: 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
+#          facebook:
+#            client-id: 912136698235784
+#            client-secret: e73b70984d7b278c98d648c96aa3cd31
