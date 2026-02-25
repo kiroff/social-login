@@ -6,5 +6,39 @@ spring:
       client:
         registration:
           google:
-            client-id: <google-client-id>.apps.googleusercontent.com
-            client-secret: <google-client-secret>
+            client-id: ${GOOGLE_CLIENT_ID}
+            client-secret: ${GOOGLE_CLIENT_SECRET}
+          facebook:
+            client-id: ${FACEBOOK_CLIENT_ID}
+            client-secret: ${FACEBOOK_CLIENT_SECRET}
+          okta:
+            client-id: ${OKTA_CLIENT_ID}
+            client-secret: ${OKTA_CLIENT_SECRET}
+            scope: openid,profile
+          kiroffclient:
+            client-id: ${KIROFFCLIENT_CLIENT_ID:kiroff-social-login}
+            client-secret: ${KIROFFCLIENT_CLIENT_SECRET:mjh25NIEhaoVG0XzDDCpZxgpnYWp03q8}
+            scope:
+              - openid
+              - profile
+              - roles
+            authorization-grant-type: authorization_code
+            redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
+        provider:
+          facebook:
+            authorization-uri: https://www.facebook.com/v23.0/dialog/oauth
+            token-uri: https://graph.facebook.com/v23.0/oauth/access_token
+            user-info-uri: https://graph.facebook.com/me?fields=id,name,email
+            user-name-attribute: id
+          okta:
+            authorization-uri: ${OKTA_AUTHORIZATION_URI:https://kiroff.eu.auth0.com/oauth2/default/v1/authorize}
+            token-uri: ${OKTA_TOKEN_URI:https://kiroff.eu.auth0.com/oauth2/default/v1/token}
+            issuer-uri: ${OKTA_ISSUER_URI:https://kiroff.eu.auth0.com/}
+          kiroffclient:
+            authorization-uri: http://localhost:8081/auth/realms/kiroff/protocol/openid-connect/auth
+            token-uri: http://localhost:8081/auth/realms/kiroff/protocol/openid-connect/token
+            jwk-set-uri: http://localhost:8081/auth/realms/kiroff/protocol/openid-connect/certs
+            user-info-uri: http://localhost:8081/auth/realms/kiroff/protocol/openid-connect/userinfo
+            user-name-attribute: preferred_username
+
+
